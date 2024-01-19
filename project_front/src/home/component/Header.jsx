@@ -25,10 +25,10 @@ const Header = () =>{
                                 <li className="nav-item dropdown">
                                     <Link className="nav-link dropdown-toggle" to="blog.html" id="navbarDropdown_1"
                                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Product
+                                        Shop
                                     </Link>
                                     <div className="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                        <Link className="dropdown-item" to="category.html"> ProDuct Main</Link>
+                                        <Link className="dropdown-item" to="category.html"> Shop Catagory</Link>
                                         <Link className="dropdown-item" to="single-product.html">product details</Link>
                                         
                                     </div>

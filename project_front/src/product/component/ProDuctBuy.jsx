@@ -1,15 +1,22 @@
-import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-
+import React, { useEffect, useState } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 const ProDuctBuy = () => {
 
-    // const navigate = useNavigate()
-    // const { id } = useParams()
-    // const [product, setProDuct] = useState({ name: "", content: "", title: "", cnt: "", createdAt: "" })
-    // const getProDuct= async () => {
-    //     const resp = await axios.get('http://localhost:8000/products/product/')
-    //     setProDuct(resp.data.data)
-    // }
+    const navigate = useNavigate()
+    const { id } = useParams()
+    const [product, setProduct] = useState({ name: "", content: "", title: "", cnt: "", createdAt: "" })
+    useEffect(() => {
+        const getProDuct = async () => {
+            try {
+                const resp = await axios.get(`http://localhost:8000/products/${id}`)
+                setProduct(resp.data)
+            } catch (error) {
+                console.error('제품 정보를 가져오지 못함', error)
+            }
+        }
+        getProDuct()
+    }, [id])
 
     return (
         <main id="main">

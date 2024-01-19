@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 
-import ProDuct from './component/ProDuct'
+import ProDuctList from './component/ProDuctList'
 import ProDuctBuy from './component/ProDuctBuy'
 
 const ProDuctMain = () => {
@@ -8,8 +8,8 @@ const ProDuctMain = () => {
         <div>
             <h2>ProDuct Main</h2>
             <Routes>
-                <Route path='/product' element={<ProDuct />} />
-                <Route path='/productbuy' element={<ProDuctBuy />} />
+                <Route path='/list' element={<ProDuctList />} /> {/* 수정된 컴포넌트 이름 */}
+                <Route path='/buy' element={<ProDuctBuy />} />
             </Routes>
         </div>
     )
