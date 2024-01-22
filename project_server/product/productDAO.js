@@ -21,18 +21,18 @@ const productDAO = {
     list: async (item, callback) => {
         let conn = null;
         try {
-            // 데이터베이스 풀에서 연결을 가져옵니다.
+            // 데이터베이스 풀에서 연결을 가져온다.
             conn = await getPool().getConnection();
-            // 'product' 테이블에서 모든 상품 정보를 조회하는 쿼리를 실행합니다.
+            // 'product' 테이블에서 모든 상품 정보를 조회하는 쿼리를 실행한다.
             const [rows] = await conn.query("SELECT * FROM product");
-            // 쿼리 실행 결과를 콜백으로 반환합니다.
+            // 쿼리 실행 결과를 콜백으로 반환한다.
             callback(null, { status: 200, message: "ok", data: rows });
         } catch (error) {
             // 에러가 발생한 경우, 에러 정보를 반환합니다.
             callback(error, { status: 500, message: "상품 목록 조회 실패", error: error });
         } finally {
             // 연결을 풀로 반환합니다.
-            if (conn) conn.release();
+            if (conn !== null) conn.release();
         }
     },
     
@@ -57,7 +57,7 @@ const productDAO = {
             callback(error, { status: 500, message: '구매 실패', error: error });
         } finally {
             // 연결 종료
-            if (conn) conn.release();
+            if (conn !== null) conn.release();
         }
     },
     

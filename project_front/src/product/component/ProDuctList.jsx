@@ -11,7 +11,7 @@ const ProductList = () => {
     // 서버연동?
     const getProductList = useCallback(async () => {
         try {
-            const resp = await axios.get('http://localhost:8000/products/productList/')
+            const resp = await axios.get('http://localhost:8000/products/list/')
             setProductList(resp.data.data)
         } catch (error) {
             console.error("상품 목록 가져오기 실패", error)
