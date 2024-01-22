@@ -8,8 +8,10 @@ const ProDuctMain = () => {
         <div>
             <h2>ProDuct Main</h2>
             <Routes>
-                <Route path='/list' element={<ProDuctList />} /> {/* 수정된 컴포넌트 이름 */}
-                <Route path='/buy' element={<ProDuctBuy />} />
+                <Routes>
+                    <Route path='/list' element={<ProDuctList />} />
+                    <Route path='/buy/:id' element={<ProDuctBuy />} />
+                </Routes>
             </Routes>
         </div>
     )

@@ -7,11 +7,15 @@ const ProductList = () => {
     const navigate = useNavigate()
     // const {id} = useParams()
     // console.log('제품 ID', id)
-    const [prodictList, setProductList] = useState({ name: "", content: "", title: "", cnt: "", createdAt: "" })
+    const [productList, setProductList] = useState([])
     // 서버연동?
     const getProductList = useCallback(async () => {
-        const resp = await axios.get('http://localhost:8000/products/productList/')
-        setProductList(resp.data.data)
+        try {
+            const resp = await axios.get('http://localhost:8000/products/productList/')
+            setProductList(resp.data.data)
+        } catch (error) {
+            console.error("상품 목록 가져오기 실패", error)
+        }
     }, [])
 
     useEffect(() => {
@@ -216,6 +220,7 @@ const ProductList = () => {
                                 </div>
 
                                 <div className="row align-items-center latest_product_inner">
+                                    
                                     <div className="col-lg-4 col-sm-6">
                                         <div className="single_product_item">
                                             <img src="images/product/product_1.png" alt="" />
