@@ -2,6 +2,7 @@
 const getPool = require("../common/pool");
 
 const sql = {
+    productlist: "select * from product",
     detail: "select * from product where product_id = ?", //read
     update:
         "update product set master_price =?, content = ? where product_id = ?", //update

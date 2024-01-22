@@ -15,9 +15,8 @@ router.get("/buy" , function (req , res, next) {
         res.json(resp);
     })
 })
-
-
 // 화면메인 부분 - 준영님
+
 
 router.get("/detail/:id", function (req, res, next) {
     console.log("디테일 불러오기");
