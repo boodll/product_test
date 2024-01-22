@@ -2,19 +2,36 @@ const express = require("express");
 const router = express.Router();
 const productDAO = require("./productDAO");
 
-router.get("/list", function (req, res, next) {
+// 상품 목록을 가져오는 GET 요청 처리
+router.get("/list", async (req, res, next) => {
     console.log("상품 메인 불러오기");
-    productDAO.list((resp) => {
-        res.json(resp);
-    });
+
+    // productDAO의 list 함수를 비동기적으로 호출
+    try {
+        const resp = await productDAO.list(); // 상품 목록 조회
+        res.json(resp); // 조회 결과를 JSON 형식으로 응답
+    } catch (error) {
+        // 에러 처리: 데이터베이스 조회 중 발생한 오류 처리
+        console.error(error); // 콘솔에 에러 로그 출력
+        res.status(500).send("상품 목록을 불러오는 중 오류가 발생했습니다.");
+    }
 });
 
-router.get("/buy" , function (req , res, next) {
+// 상품 구매 목록을 가져오는 GET 요청 처리
+router.get("/buy", async (req, res, next) => {
     console.log("상품 구매 목록 불러오기");
-    productDAO.buy((resp) =>{
-        res.json(resp);
-    })
-})
+
+    // productDAO의 buy 함수를 비동기적으로 호출
+    try {
+        const resp = await productDAO.buy(); // 상품 구매 목록 조회
+        res.json(resp); // 조회 결과를 JSON 형식으로 응답
+    } catch (error) {
+        // 에러 처리: 데이터베이스 조회 중 발생한 오류 처리
+        console.error(error); // 콘솔에 에러 로그 출력
+        res.status(500).send("상품 구매 목록을 불러오는 중 오류가 발생했습니다.");
+    }
+});
+
 // 화면메인 부분 - 준영님
 
 
