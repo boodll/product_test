@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useEffect } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 
@@ -7,15 +7,13 @@ const ProductList = () => {
     const navigate = useNavigate()
     // const {id} = useParams()
     // console.log('제품 ID', id)
-    const [productList, setProductList] = useState([])
+    const [productList, setProductList] = useState({
+        status: "", message: "", data: []
+    })
     // 서버연동?
     const getProductList = useCallback(async () => {
-        try {
-            const resp = await axios.get('http://localhost:8000/products/list/')
-            setProductList(resp.data.data)
-        } catch (error) {
-            console.error("상품 목록 가져오기 실패", error)
-        }
+        const resp = await axios.get('http://localhost:8000/products/productList')
+        setProductList(resp.data)
     }, [])
 
     useEffect(() => {
@@ -220,7 +218,7 @@ const ProductList = () => {
                                 </div>
 
                                 <div className="row align-items-center latest_product_inner">
-                                    
+
                                     <div className="col-lg-4 col-sm-6">
                                         <div className="single_product_item">
                                             <img src="images/product/product_1.png" alt="" />

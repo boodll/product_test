@@ -6,8 +6,9 @@ const HomeMain = () => {
     return (
         <div>
             <Header />
+                
             {/* <!-- breadcrumb start--> */}
-    <section className="breadcrumb breadcrumb_bg">
+    <section class="breadcrumb breadcrumb_bg">
         <div className="container">
             <div className="row justify-content-center">
                 <div className="col-lg-8">

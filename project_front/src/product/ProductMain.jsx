@@ -1,19 +1,18 @@
 import { Route, Routes } from 'react-router-dom'
 
-import ProDuctList from './component/ProDuctList'
-import ProDuctBuy from './component/ProDuctBuy'
+import ProductList from './component/ProductList'
+import ProductBuy from './component/ProductBuy'
 
-const ProDuctMain = () => {
+
+const ProductMain = () => {
     return (
         <div>
             <h2>ProDuct Main</h2>
             <Routes>
-                <Routes>
-                    <Route path='/list' element={<ProDuctList />} />
-                    <Route path='/buy/:id' element={<ProDuctBuy />} />
-                </Routes>
+                <Route path='/list' element={<ProductList />} />
+                <Route path='/buy' element={<ProductBuy />} />
             </Routes>
         </div>
     )
 }
-export default ProDuctMain
+export default ProductMain
