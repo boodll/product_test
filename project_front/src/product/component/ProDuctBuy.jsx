@@ -5,28 +5,18 @@ const ProDuctBuy = () => {
 
     const navigate = useNavigate()
     const { id } = useParams()
-    const [product, setProduct] = useState(null); // 상품 정보를 저장할 상태
-    const [loading, setLoading] = useState(true); // 데이터 로딩 상태를 추적
-    const [error, setError] = useState(''); // 에러 메시지도 
+    const [product, setProduct] = useState({ name: "", content: "", title: "", cnt: "", createdAt: "" }); // 상품 정보를 저장할 상태
 
-    
+    const getProDuctBuy = async () => {
+        const resp = await axios.get('http://localhost:8000/prodcuts/buy/' + id)
+        setProduct(resp.data.data)
+    }
+
     useEffect(() => {
-        const getProDuct = async () => {
-            try {
-                const resp = await axios.get('http://localhost:8000/products/' + id);
-                setProduct(resp.data) //상품 데이터에 저장해주고
-                setLoading(false); // 로딩 상태를 false로 설정한다.
-            } catch (error) {
-                //데이터 조회 실패하면 처리
-                console.error('제품 정보를 가져오지 못함', error)
-                setError("제품 정보를 불러오기 실패 했습니다.")
-                setLoading(false)
-            }
-        }
-        getProDuct()
-    }, [id])
+        getProDuctBuy()
+    }, [])
 
-    const handleBuy = () =>{
+    const handleBuy = () => {
         console.log("구매하기 클릭")
         // 구매하기 로직을 생성하는데 어디에 버튼을 만들어서 구현하는게 맞는걸까..
         // 버튼을 생성하지 않고 상품을 클릭하면 페이지로 넘어가고 끝?

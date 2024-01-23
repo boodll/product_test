@@ -31,3 +31,7 @@ git
 >git add .
 >git commit -m "aaaa"
 >git push -u origin main
+
+---------------------------------------------------------
+//productlist 상단에 header 부분이 왜 안나오지;;
+
