@@ -34,8 +34,8 @@ const ProductList = () => {
                             <div className="col-lg-8">
                                 <div className="breadcrumb_iner">
                                     <div className="breadcrumb_iner_item">
-                                        <h2>Shop Category</h2>
-                                        <p>Home <span>-</span> Shop Category</p>
+                                        <h2>ProDuct List</h2>
+                                        <p>Home <span>-</span> ProDuct List</p>
                                     </div>
                                 </div>
                             </div>
@@ -194,12 +194,13 @@ const ProductList = () => {
                                                 </select>
                                             </div>
                                             <div className="single_product_menu d-flex">
-                                                <h5>show :</h5>
+                                                {/* <h5>show :</h5> */}
+                                                <Link className="dropdown-item" to="/products/buy"> 상품 구매하기</Link>
                                                 <div className="top_pageniation">
                                                     <ul>
-                                                        <li>1</li>
+                                                        {/* <li>1</li>
                                                         <li>2</li>
-                                                        <li>3</li>
+                                                        <li>3</li> */}
                                                     </ul>
                                                 </div>
                                             </div>

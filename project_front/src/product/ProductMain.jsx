@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 
-import ProductList from './component/ProductList'
+import ProductList from './component/ProDuctList'
 import ProductBuy from './component/ProductBuy'
 
 

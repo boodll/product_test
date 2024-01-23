@@ -4,7 +4,7 @@ const getPool = require("../common/pool");
 const sql = {
     productList: "select * from product",
 
-    buy: "update product set auction_status = '판매완료' where product_id = ?",
+    buy: "update product set auction_status = '?' where product_id = ?",
 
     detail: "select * from product where product_id = ?", //read
     update:
@@ -25,6 +25,7 @@ const productDAO = {
         try {
             conn = await getPool().getConnection()
             const [resp] = await conn.query(sql.productList, [])
+            console.log('1010', resp)
             callback({ status: 200, message: 'OK', data: resp })
         } catch (error) {
             return { status: 500, message: '조회 실패', error: error }
@@ -44,31 +45,11 @@ const productDAO = {
             // 콜백으로 성공 응답 전송
             callback(null, { status: 200, message: "구매 신청 완료" });
         } catch (error) {
-            // 오류 발생시 처리
-            callback(error, { status: 500, message: '구매 실패', error: error });
+            return { status: 500, message: '구매 실패', error: error }
         } finally {
-            // 연결 종료
-            if (conn) conn.release();
+            if (conn !== null) conn.release()
         }
     },
-
-
-
-    // 구매 항목 객체
-    // let itemToBuy = {
-    //     buy: '항목ID'  예시 항목 ID
-    // };
-
-    // `buy` 함수 호출
-    // this.buy(itemToBuy, (response) => {
-    //     if (response.status === 200) {
-    //         성공 시 알림
-    //         alert("구매등록완료");
-    //     } else {
-    //         실패 시 오류 메시지 표시
-    //         alert("구매 등록 실패: " + response.message);
-    //     }
-    // });
 
 
     detail: async (item, callback) => {

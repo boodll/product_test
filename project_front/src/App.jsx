@@ -10,14 +10,14 @@ function App() {
   return (
     <Router>
       <div>
-        {/* <Header /> */}
+        <Header />
         <Routes>
           <Route path="/" element={<HomeMain />} />
           {/* 다른 경로들을 여기에 추가할 수 있다 */}
           {/* <Route path='/product' element={<ProDuctMain />} /> */}
           <Route path='/products/*' element={<ProductMain />} /> {/*Product 컴포넌트를 위한 라우트를 추가 */}
         </Routes>
-        {/* <Footer /> */}
+        <Footer />
       </div>
       </Router>
   );

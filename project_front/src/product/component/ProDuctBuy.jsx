@@ -1,26 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-const ProDuctBuy = () => {
+const ProductBuy = () => {
 
     const navigate = useNavigate()
     const { id } = useParams()
     const [product, setProduct] = useState({ name: "", content: "", title: "", cnt: "", createdAt: "" }); // 상품 정보를 저장할 상태
 
-    const getProDuctBuy = async () => {
+    const getProductBuy = async () => {
         const resp = await axios.get('http://localhost:8000/prodcuts/buy/' + id)
         setProduct(resp.data.data)
+        navigate('/product/list')
     }
 
     useEffect(() => {
-        getProDuctBuy()
+        getProductBuy()
     }, [])
 
     const handleBuy = () => {
         console.log("구매하기 클릭")
         // 구매하기 로직을 생성하는데 어디에 버튼을 만들어서 구현하는게 맞는걸까..
         // 버튼을 생성하지 않고 상품을 클릭하면 페이지로 넘어가고 끝?
-        // 버튼 클릭시 디테일 이동 까지 생각
+        // 버튼 클릭시 디테일 이동 까지 생각하자
     }
 
     return (
@@ -343,5 +344,5 @@ const ProDuctBuy = () => {
     )
 }
 
-export default ProDuctBuy
+export default ProductBuy
 

@@ -3,21 +3,38 @@ const router = express.Router();
 const productDAO = require("./productDAO");
 
 // 상품 목록을 가져오는 GET 요청 처리
-router.get("/list", function (req, res, next) {
+router.get("/productlist", function (req, res, next) {
     console.log("상품 페이지");
     productDAO.productList((resp) => {
         res.json(resp);
     });
-}); 
+});
 
 // 상품 구매 목록을 가져오는 GET 요청 처리
-router.get("/buy/:id", function (req, res, next) {
+router.post("/buy/:id", function (req, res, next) {
     console.log("상품 구매 목록");
-    const id = req.params.id;
-    productDAO.buy((resp) => {
+    // 클라이언트로부터 직접 id 값을 받지 않고, req.params.id를 바로 사용
+    const data = { product_id: req.params.id };
+    // productDAO.buy 호출 시 데이터 전달
+    productDAO.buy(data, (resp) => {
         res.json(resp);
     });
-}); 
+});
+
+// buy 무한로딩 미치겠다 진짜.. 이건 테스트용 
+// router.get("/buy", function (req, res, next) {
+//     console.log("상품 구매 목록");
+//     const id = req.query.id;
+//     if (id) {
+//         productDAO.buy(id, (resp) => {
+//             res.json(resp);
+//         });
+//     } else {
+//         res.status(400).json({ error: "No product ID provided" });
+//     }
+// });
+
+
 
 // 화면메인 부분 - 준영님
 

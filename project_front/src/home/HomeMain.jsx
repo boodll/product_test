@@ -8,7 +8,7 @@ const HomeMain = () => {
             <Header />
                 
             {/* <!-- breadcrumb start--> */}
-    <section class="breadcrumb breadcrumb_bg">
+    {/* <section class="breadcrumb breadcrumb_bg">
         <div className="container">
             <div className="row justify-content-center">
                 <div className="col-lg-8">
@@ -21,7 +21,7 @@ const HomeMain = () => {
                 </div>
             </div>
         </div>
-    </section>
+    </section> */}
     {/* <!-- breadcrumb start--> */}
             <Home />
             <Footer />
