@@ -5,23 +5,23 @@ import Footer from "./component/Footer";
 const HomeMain = () => {
     return (
         <div>
-            <Header />
+            {/* <Header /> */}
                 
             {/* <!-- breadcrumb start--> */}
-    {/* <section class="breadcrumb breadcrumb_bg">
+    <section class="breadcrumb breadcrumb_bg" style={{backgroundSize: "300px"}}>
         <div className="container">
             <div className="row justify-content-center">
                 <div className="col-lg-8">
                     <div className="breadcrumb_iner">
                         <div className="breadcrumb_iner_item">
-                            <h2>Shop Single</h2>
-                            <p>Home <span>-</span> Shop Single</p>
+                            <h2>B-MIC Home</h2>
+                            <p>Home <span></span></p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section> */}
+    </section>
     {/* <!-- breadcrumb start--> */}
             <Home />
             <Footer />

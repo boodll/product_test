@@ -28,7 +28,8 @@ const ProductList = () => {
             {/* // <!--================Home Banner Area =================-->
         // <!-- breadcrumb start--> */}
             <div>
-                <section className="breadcrumb breadcrumb_bg">
+                <section className="breadcrumb breadcrumb_bg" style={{backgroundSize: "300px"}}> 
+                    {/* <section className="breadcrumb breadcrumb_bg"> style={{backgroundImage: "url(img/b-mic.png)"}} */}
                     <div className="container">
                         <div className="row justify-content-center">
                             <div className="col-lg-8">
@@ -183,7 +184,7 @@ const ProductList = () => {
                                     <div className="col-lg-12">
                                         <div className="product_top_bar d-flex justify-content-between align-items-center">
                                             <div className="single_product_menu">
-                                                <p><span>10000 </span> Prodict Found</p>
+                                                <p><span>10000 </span> 상품 리스트</p>
                                             </div>
                                             <div className="single_product_menu d-flex">
                                                 <h5>short by : </h5>
@@ -195,7 +196,8 @@ const ProductList = () => {
                                             </div>
                                             <div className="single_product_menu d-flex">
                                                 {/* <h5>show :</h5> */}
-                                                <Link className="dropdown-item" to="/products/buy"> 상품 구매하기</Link>
+                                                {/* <Link className="dropdown-item" to="/products/buy"> 상품 구매하기</Link> */}
+                                                <Link to="/products/buy/:id" className="list-group-item list-group-item-action list-group-item-danger">상품 구매하기</Link>
                                                 <div className="top_pageniation">
                                                     <ul>
                                                         {/* <li>1</li>
@@ -224,9 +226,9 @@ const ProductList = () => {
                                         <div className="single_product_item">
                                             <img src="img/product/product_1.png" alt="" />
                                             <div className="single_product_text">
-                                                <h4>Quartz Belt Watch</h4>
+                                                <h4>상품1</h4>
                                                 <h3>$150.00</h3>
-                                                <Link to="#" className="add_cart">+ add to cart<i className="ti-heart"></i></Link>
+                                                <Link to="#" className="add_cart">+ 상품 자세히 보기<i className="ti-heart"></i></Link>
                                             </div>
                                         </div>
                                     </div>
@@ -234,9 +236,9 @@ const ProductList = () => {
                                         <div className="single_product_item">
                                             <img src="img/product/product_2.png" alt="" />
                                             <div className="single_product_text">
-                                                <h4>Quartz Belt Watch</h4>
+                                                <h4>상품2</h4>
                                                 <h3>$150.00</h3>
-                                                <Link to="#" className="add_cart">+ add to cart<i className="ti-heart"></i></Link>
+                                                <Link to="#" className="add_cart">+ 상품 자세히 보기<i className="ti-heart"></i></Link>
                                             </div>
                                         </div>
                                     </div>
@@ -244,9 +246,9 @@ const ProductList = () => {
                                         <div className="single_product_item">
                                             <img src="img/product/product_3.png" alt="" />
                                             <div className="single_product_text">
-                                                <h4>Quartz Belt Watch</h4>
+                                                <h4>상품3</h4>
                                                 <h3>$150.00</h3>
-                                                <Link to="#" className="add_cart">+ add to cart<i className="ti-heart"></i></Link>
+                                                <Link to="#" className="add_cart">+ 상품 자세히 보기<i className="ti-heart"></i></Link>
                                             </div>
                                         </div>
                                     </div>
@@ -254,9 +256,9 @@ const ProductList = () => {
                                         <div className="single_product_item">
                                             <img src="img/product/product_4.png" alt="" />
                                             <div className="single_product_text">
-                                                <h4>Quartz Belt Watch</h4>
+                                                <h4>상품4</h4>
                                                 <h3>$150.00</h3>
-                                                <Link to="#" className="add_cart">+ add to cart<i className="ti-heart"></i></Link>
+                                                <Link to="#" className="add_cart">+ 상품 자세히 보기<i className="ti-heart"></i></Link>
                                             </div>
                                         </div>
                                     </div>
@@ -264,9 +266,9 @@ const ProductList = () => {
                                         <div className="single_product_item">
                                             <img src="img/product/product_5.png" alt="" />
                                             <div className="single_product_text">
-                                                <h4>Quartz Belt Watch</h4>
+                                                <h4>상품5</h4>
                                                 <h3>$150.00</h3>
-                                                <Link to="#" className="add_cart">+ add to cart<i className="ti-heart"></i></Link>
+                                                <Link to="#" className="add_cart">+ 상품 자세히 보기<i className="ti-heart"></i></Link>
                                             </div>
                                         </div>
                                     </div>
@@ -274,9 +276,9 @@ const ProductList = () => {
                                         <div className="single_product_item">
                                             <img src="img/product/product_6.png" alt="" />
                                             <div className="single_product_text">
-                                                <h4>Quartz Belt Watch</h4>
+                                                <h4>상품6</h4>
                                                 <h3>$150.00</h3>
-                                                <Link to="#" className="add_cart">+ add to cart<i className="ti-heart"></i></Link>
+                                                <Link to="#" className="add_cart">+ 상품 자세히 보기<i className="ti-heart"></i></Link>
                                             </div>
                                         </div>
                                     </div>
@@ -284,9 +286,9 @@ const ProductList = () => {
                                         <div className="single_product_item">
                                             <img src="img/product/product_7.png" alt="" />
                                             <div className="single_product_text">
-                                                <h4>Quartz Belt Watch</h4>
+                                                <h4>상품7</h4>
                                                 <h3>$150.00</h3>
-                                                <Link to="#" className="add_cart">+ add to cart<i className="ti-heart"></i></Link>
+                                                <Link to="#" className="add_cart">+ 상품 자세히 보기<i className="ti-heart"></i></Link>
                                             </div>
                                         </div>
                                     </div>
@@ -294,9 +296,9 @@ const ProductList = () => {
                                         <div className="single_product_item">
                                             <img src="img/product/product_8.png" alt="" />
                                             <div className="single_product_text">
-                                                <h4>Quartz Belt Watch</h4>
+                                                <h4>상품8</h4>
                                                 <h3>$150.00</h3>
-                                                <Link to="#" className="add_cart">+ add to cart<i className="ti-heart"></i></Link>
+                                                <Link to="#" className="add_cart">+ 상품 자세히 보기<i className="ti-heart"></i></Link>
                                             </div>
                                         </div>
                                     </div>
@@ -304,9 +306,9 @@ const ProductList = () => {
                                         <div className="single_product_item">
                                             <img src="img/product/product_2.png" alt="" />
                                             <div className="single_product_text">
-                                                <h4>Quartz Belt Watch</h4>
+                                                <h4>상품9</h4>
                                                 <h3>$150.00</h3>
-                                                <Link to="#" className="add_cart">+ add to cart<i className="ti-heart"></i></Link>
+                                                <Link to="#" className="add_cart">+ 상품 자세히 보기<i className="ti-heart"></i></Link>
                                             </div>
                                         </div>
                                     </div>
@@ -456,9 +458,9 @@ const ProductList = () => {
                                             <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
                                                 class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
                                                 onblur="this.placeholder = ' Email Address '" />
-                                                <button type="submit" name="submit" id="newsletter-submit"
-                                                    class="email_icon newsletter-submit button-contactForm">subscribe</button>
-                                                <div class="mt-10 info"></div>
+                                            <button type="submit" name="submit" id="newsletter-submit"
+                                                class="email_icon newsletter-submit button-contactForm">subscribe</button>
+                                            <div class="mt-10 info"></div>
                                         </form>
                                     </div>
                                 </div>

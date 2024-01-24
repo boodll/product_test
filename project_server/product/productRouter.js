@@ -12,14 +12,15 @@ router.get("/productlist", function (req, res, next) {
 
 // 상품 구매 목록을 가져오는 GET 요청 처리
 router.post("/buy/:id", function (req, res, next) {
-    console.log("상품 구매 목록");
-    // 클라이언트로부터 직접 id 값을 받지 않고, req.params.id를 바로 사용
-    const data = { product_id: req.params.id };
+    console.log("상품 구매등록");
+    const data = req.body;
     // productDAO.buy 호출 시 데이터 전달
     productDAO.buy(data, (resp) => {
         res.json(resp);
     });
 });
+
+
 
 // buy 무한로딩 미치겠다 진짜.. 이건 테스트용 
 // router.get("/buy", function (req, res, next) {

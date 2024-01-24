@@ -17,7 +17,7 @@ function App() {
           {/* <Route path='/product' element={<ProDuctMain />} /> */}
           <Route path='/products/*' element={<ProductMain />} /> {/*Product 컴포넌트를 위한 라우트를 추가 */}
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </div>
       </Router>
   );

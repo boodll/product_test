@@ -8,57 +8,59 @@ const ProductBuy = () => {
     const [product, setProduct] = useState({ name: "", content: "", title: "", cnt: "", createdAt: "" }); // 상품 정보를 저장할 상태
 
     const getProductBuy = async () => {
-        const resp = await axios.get('http://localhost:8000/prodcuts/buy/' + id)
+        const resp = await axios.post('http://localhost:8000/products/buy/' + id)
         setProduct(resp.data.data)
         navigate('/product/list')
     }
 
     useEffect(() => {
         getProductBuy()
-    }, [])
+    }, [id])
 
-    const handleBuy = () => {
-        console.log("구매하기 클릭")
-        // 구매하기 로직을 생성하는데 어디에 버튼을 만들어서 구현하는게 맞는걸까..
-        // 버튼을 생성하지 않고 상품을 클릭하면 페이지로 넘어가고 끝?
-        // 버튼 클릭시 디테일 이동 까지 생각하자
-    }
+    // const handleBuy = () => {
+    //     console.log("구매하기 클릭")
+    //     구매하기 로직을 생성하는데 어디에 버튼을 만들어서 구현하는게 맞는걸까..
+    //     버튼을 생성하지 않고 상품을 클릭하면 페이지로 넘어가고 끝?
+    //     버튼 클릭시 list 페이지로 다시 이동하는것 까지
+    // }
 
     return (
         <main id="main">
             {/* // <!--================Home Banner Area =================-->
         // <!-- breadcrumb start--> */}
             <div>
-                <section className="breadcrumb breadcrumb_bg">
+                <section className="breadcrumb breadcrumb_bg" style={{backgroundSize: "300px"}}>
                     <div className="container">
                         <div className="row justify-content-center">
                             <div className="col-lg-8">
                                 <div className="breadcrumb_iner">
                                     <div className="breadcrumb_iner_item">
-                                        <h2>Shop Category</h2>
-                                        <p>Home <span>-</span> Shop Category</p>
+                                        <h2>ProDuct Buy</h2>
+                                        <p>Home <span>-</span> ProDuct Buy</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-                {/* // <!-- breadcrumb start-->
+                {/* // <!-- breadcrumb start-->  */}
+
+                
     
-        // <!--================Category Product Area =================--> */}
-                <section className="cat_product_area section_padding">
+        {/* // <!--================Category Product Area =================--> */}
+                {/* <section className="cat_product_area section_padding">
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-3">
-                                <div className="left_sidebar_area">
-                                    <aside className="left_widgets p_filter_widgets">
+                                <div className="left_sidebar_area"> */}
+                                    {/* <aside className="left_widgets p_filter_widgets">
                                         <div className="l_w_title">
                                             <h3>Browse Categories</h3>
                                         </div>
                                         <div className="widgets_inner">
                                             <ul className="list">
-                                                <li>
-                                                    <Link to="#">Frozen Fish</Link>
+                                                <li> */}
+                                                    {/* <Link to="#">Frozen Fish</Link>
                                                     <span>(250)</span>
                                                 </li>
                                                 <li>
@@ -154,16 +156,16 @@ const ProductBuy = () => {
                                                 </li>
                                             </ul>
                                         </div>
-                                    </aside>
+                                    </aside> */}
 
-                                    <aside className="left_widgets p_filter_widgets price_rangs_aside">
+                                    {/* <aside className="left_widgets p_filter_widgets price_rangs_aside">
                                         <div className="l_w_title">
                                             <h3>Price Filter</h3>
                                         </div>
                                         <div className="widgets_inner">
-                                            <div className="range_item">
+                                            <div className="range_item"> */}
                                                 {/* <!-- <div id="slider-range"></div> --> */}
-                                                <input type="text" className="js-range-slider" value="" />
+                                                {/* <input type="text" className="js-range-slider" value="" />
                                                 <div className="d-flex">
                                                     <div className="price_text">
                                                         <p>Price :</p>
@@ -337,7 +339,7 @@ const ProductBuy = () => {
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> */}
                 {/* <!--================End Category Product Area =================--> */}
             </div>
         </main>
