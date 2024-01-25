@@ -8,7 +8,7 @@ import ProductBuy from './component/ProductBuy'
 const ProductMain = () => {
     return (
         <div>
-            <h2>ProDuct Main</h2>
+            {/* <h2>ProDuct Main</h2> */}
             <Routes>
                 <Route path='/list' element={<ProductList />} />
                 <Route path='/buy/:id' element={<ProductBuy />} />

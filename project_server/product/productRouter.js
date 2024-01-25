@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const productDAO = require("./productDAO");
 
-// 상품 목록을 가져오는 GET 요청 처리
 router.get("/productlist", function (req, res, next) {
     console.log("상품 페이지");
     productDAO.productList((resp) => {
@@ -10,8 +9,7 @@ router.get("/productlist", function (req, res, next) {
     });
 });
 
-// 상품 구매 목록을 가져오는 GET 요청 처리
-router.post("/buy/:id", function (req, res, next) {
+router.post("/buy", function (req, res, next) {
     console.log("상품 구매등록");
     const data = req.body;
     // productDAO.buy 호출 시 데이터 전달
@@ -19,23 +17,6 @@ router.post("/buy/:id", function (req, res, next) {
         res.json(resp);
     });
 });
-
-
-
-// buy 무한로딩 미치겠다 진짜.. 이건 테스트용 
-// router.get("/buy", function (req, res, next) {
-//     console.log("상품 구매 목록");
-//     const id = req.query.id;
-//     if (id) {
-//         productDAO.buy(id, (resp) => {
-//             res.json(resp);
-//         });
-//     } else {
-//         res.status(400).json({ error: "No product ID provided" });
-//     }
-// });
-
-
 
 // 화면메인 부분 - 준영님
 

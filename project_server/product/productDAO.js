@@ -41,7 +41,15 @@ const productDAO = {
             conn = await getPool().getConnection();
             // auction 테이블에 구매 정보 기록 하나씩 전부 받아야 하는건가..? 빈 배열은?
             // 'product' 테이블의 상태 업데이트
-            await conn.query(sql.buy, [item.email, item.product_id]);
+            await conn.query(sql.buy, [
+                item.product_id,
+                item.title,
+                item.email,
+                item.master_price,
+                item.auction_id,
+                item.isbn,
+            ]);
+            console.log("22222", resp)
             // 콜백으로 성공 응답 전송
             callback(null, { status: 200, message: "구매 신청 완료" });
         } catch (error) {
