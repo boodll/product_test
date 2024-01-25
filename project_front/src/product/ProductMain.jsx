@@ -11,7 +11,7 @@ const ProductMain = () => {
             {/* <h2>ProDuct Main</h2> */}
             <Routes>
                 <Route path='/list' element={<ProductList />} />
-                <Route path='/buy/:id' element={<ProductBuy />} />
+                <Route path='/buy' element={<ProductBuy />} />
             </Routes>
         </div>
     )

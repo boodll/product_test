@@ -3,11 +3,10 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const ProductBuy = () => {
+    const navigate = useNavigate() //다른 페이지로 이동을 위해서 사용
 
-    const navigate = useNavigate()
-
-    // const { id } = useParams()
-    const [product, setProduct] = useState({
+    const { id } = useParams()
+    const [product, setProduct] = useState({ //상품 정보 저장
         product_id: "",
         title: "",
         email: "",
@@ -16,185 +15,118 @@ const ProductBuy = () => {
         isbn: "",
     });
 
+    const [searchResults, setSearchResults] = useState([]); //검색 결과를 저장 처음은 빈 배열로
+
     const changeData = useCallback((e) => {
-        setProduct({ ...product, [e.target.name]: e.target.value })
+        setProduct({ ...product, [e.target.name]: e.target.value }) //key : value 값으로
     }, [product])
+
+    // 검색 실행 함수
+    const executeSearch = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.get(`http://localhost:8000/search?input=${product.title}`);
+            setSearchResults(response.data)
+        } catch (error) {
+            console.error('Search failed:', error);
+            window.alert("검색 중 오류가 발생했습니다.");
+        }
+    };
+
+    // 검색 결과를 렌더링하는 함수
+    const renderSearchResults = () => {
+        return searchResults.map((item, index) => (
+            <div key={index}>
+                <h3>{item.title}</h3>
+                <p>{item.price}</p>
+            </div>
+        ));
+    };
+
+
 
     // const getProductBuy = async () => {
     //     const resp = await axios.post('http://localhost:8000/products/buy')
     //     setProduct(resp.data.data)
-        // navigate('/product/list')
+    // navigate('/product/list')
 
-        const buyProduct = useCallback(async (e) => {
-            e.preventDefault();
-            await axios.post('http://localhost:8000/products/buy', product);
-            navigate('/product/list');
-        }, [navigate, product]);
+    //--------------------------------------------------------------
+    // const buyProduct = useCallback(async (e) => {
+    //     e.preventDefault();
+    //     await axios.post('http://localhost:8000/products/buy', product);
+    //     if (resp.product.status === 500) window.alert("상품이 없습니다.")
+    //     else navigate('/product/list');
+    // }, [product, navigate]);
 
-        // useEffect(() => {
-        //     getProductBuy()
-        // }, [])
+    const buyProduct = useCallback(async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('http://localhost:8000/products/buy', product);
+            if (response.status === 500) {
+                window.alert("상품이 없습니다.");
+            } else {
+                navigate('/product/list');
+            }
+        } catch (error) {
+            console.error('Purchase failed:', error);
+            window.alert("구매 처리 중 오류가 발생했습니다.");
+        }
+    }, [product, navigate]);
 
-        return (
-            <main id="main">
-                {/* // <!--================Home Banner Area =================-->
+
+    // useEffect(() => {
+    //     getProductBuy()
+    // }, [])
+
+    return (
+        <main id="main">
+            {/* // <!--================Home Banner Area =================-->
         // <!-- breadcrumb start--> */}
-                <div>
-                    <section className="breadcrumb breadcrumb_bg" style={{ backgroundSize: "300px" }}>
-                        <div className="container">
-                            <div className="row justify-content-center">
-                                <div className="col-lg-8">
-                                    <div className="breadcrumb_iner">
-                                        <div className="breadcrumb_iner_item">
-                                            <h2>ProDuct Buy</h2>
-                                            <p>Home <span>-</span> ProDuct Buy</p>
-                                        </div>
+            <div>
+                <section className="breadcrumb breadcrumb_bg" style={{ backgroundSize: "300px" }}>
+                    <div className="container">
+                        <div className="row justify-content-center">
+                            <div className="col-lg-8">
+                                <div className="breadcrumb_iner">
+                                    <div className="breadcrumb_iner_item">
+                                        <h2>ProDuct Buy</h2>
+                                        <p>Home <span>-</span> ProDuct Buy</p>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </section>
-                    {/* // <!-- breadcrumb start End-->  */}
-                    <br />
-                    <h1>구매 신청하기</h1>
-                    <div className="col-lg-4">
-                        <div className="blog_right_sidebar">
-                            <table className='table'>
-                                <tbody>
-                                    <tr>
-                                        <td>구매 상품검색</td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                className="form-control" 
-                                                name='title' 
-                                                value={product.title} onChange={changeData} placeholder='제목을 입력하세요'
-                                                onfocus={(e) => e.target.placeholder = ''}
-                                                onblur={(e) => e.target.placeholder = 'Search Keyword'}/>
-                                        </td>
-                                        <td>
-                                            <button type='submit' className="button rounded-0 primary-bg text-white w-100 btn_1"
-                                            onClick={buyProduct}>구매하기</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            {/* <aside class="single_sidebar_widget search_widget">
-                                <form action="#">
-                                    <div class="form-group">
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control" placeholder='제목을 입력하세요'
-                                                onfocus="this.placeholder = ''"
-                                                onblur="this.placeholder = 'Search Keyword'" />
-                                            <div class="input-group-append">
-                                                <button class="btn" type="button"><i class="ti-search"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button class="button rounded-0 primary-bg text-white w-100 btn_1"
-                                        type="submit" onClick={buyProduct}>검색</button>
-                                </form>
-                            </aside> */}
                         </div>
                     </div>
-                    {/* <!--::footer_part start::--> */}
-                    <footer class="footer_part">
-                        <div class="container">
-                            <div class="row justify-content-around">
-                                <div class="col-sm-6 col-lg-2">
-                                    <div class="single_footer_part">
-                                        <h4>Top Products</h4>
-                                        <ul class="list-unstyled">
-                                            <li><a href="">Managed Website</a></li>
-                                            <li><a href="">Manage Reputation</a></li>
-                                            <li><a href="">Power Tools</a></li>
-                                            <li><a href="">Marketing Service</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-lg-2">
-                                    <div class="single_footer_part">
-                                        <h4>Quick Links</h4>
-                                        <ul class="list-unstyled">
-                                            <li><a href="">Jobs</a></li>
-                                            <li><a href="">Brand Assets</a></li>
-                                            <li><a href="">Investor Relations</a></li>
-                                            <li><a href="">Terms of Service</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-lg-2">
-                                    <div class="single_footer_part">
-                                        <h4>Features</h4>
-                                        <ul class="list-unstyled">
-                                            <li><a href="">Jobs</a></li>
-                                            <li><a href="">Brand Assets</a></li>
-                                            <li><a href="">Investor Relations</a></li>
-                                            <li><a href="">Terms of Service</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-lg-2">
-                                    <div class="single_footer_part">
-                                        <h4>Resources</h4>
-                                        <ul class="list-unstyled">
-                                            <li><a href="">Guides</a></li>
-                                            <li><a href="">Research</a></li>
-                                            <li><a href="">Experts</a></li>
-                                            <li><a href="">Agencies</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-lg-4">
-                                    <div class="single_footer_part">
-                                        <h4>Newsletter</h4>
-                                        <p>Heaven fruitful doesn't over lesser in days. Appear creeping
-                                        </p>
-                                        <div id="mc_embed_signup">
-                                            <form target="_blank"
-                                                action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                                                method="get" class="subscribe_form relative mail_part">
-                                                <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
-                                                    class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
-                                                    onblur="this.placeholder = ' Email Address '" />
-                                                <button type="submit" name="submit" id="newsletter-submit"
-                                                    class="email_icon newsletter-submit button-contactForm">subscribe</button>
-                                                <div class="mt-10 info"></div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="copyright_part">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-8">
-                                        <div class="copyright_text">
-                                            {/* <P><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></P> */}
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="footer_icon social_icon">
-                                            <ul class="list-unstyled">
-                                                <li><a href="#" class="single_social_icon"><i class="fab fa-facebook-f"></i></a></li>
-                                                <li><a href="#" class="single_social_icon"><i class="fab fa-twitter"></i></a></li>
-                                                <li><a href="#" class="single_social_icon"><i class="fas fa-globe"></i></a></li>
-                                                <li><a href="#" class="single_social_icon"><i class="fab fa-behance"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                </section>
+                {/* // <!-- breadcrumb start End-->  */}
+                <br />
+                <aside className="single_sidebar_widget search_widget">
+                    <form onSubmit={executeSearch}>
+                        <div className="form-group">
+                            <div className="input-group mb-3">
+                                <input type="text"
+                                    className="form-control"
+                                    name="title"
+                                    value={product.title}
+                                    onChange={changeData}
+                                    placeholder='제목을 입력하세요'
+                                    onFocus={(e) => e.target.placeholder = ''}
+                                    onBlur={(e) => e.target.placeholder = 'Search Keyword'} />
+                                <div className="input-group-append">
+                                    <button type='submit' className="button rounded-0 primary-bg text-white w-100 btn_1">
+                                        검색하기
+                                    </button>
                                 </div>
                             </div>
                         </div>
-                    </footer>
-                    {/* <!--::footer_part end::--> */}
-                </div>
-            </main >
-        )
-    }
+                    </form>
+                    {/* 검색 결과 */}
+                    <div>
+                        {renderSearchResults()}
+                    </div>
+                </aside>
+            </div>
+        </main >
+    )
+}
 
 export default ProductBuy

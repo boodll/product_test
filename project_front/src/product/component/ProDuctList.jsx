@@ -197,7 +197,7 @@ const ProductList = () => {
                                             <div className="single_product_menu d-flex">
                                                 {/* <h5>show :</h5> */}
                                                 {/* <Link className="dropdown-item" to="/products/buy"> 상품 구매하기</Link> */}
-                                                <Link to="/products/buy/:id" className="list-group-item list-group-item-action list-group-item-danger">상품 구매하기</Link>
+                                                <Link to="/products/buy" className="list-group-item list-group-item-action list-group-item-danger">상품 구매하기</Link>
                                                 <div className="top_pageniation">
                                                     <ul>
                                                         {/* <li>1</li>
