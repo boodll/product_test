@@ -59,6 +59,8 @@ const productDAO = {
         }
     },
 
+    
+
 
     detail: async (item, callback) => {
         //item 매개변수로 조회하고자 하는 상품의 정보가 담긴 객체를 받음

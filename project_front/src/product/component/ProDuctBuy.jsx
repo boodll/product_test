@@ -15,7 +15,7 @@ const ProductBuy = () => {
         isbn: "",
     });
 
-    const [searchResults, setSearchResults] = useState([]); //검색 결과를 저장 처음은 빈 배열로
+    const [searchResults, setSearchResults] = useState([]);
 
     const changeData = useCallback((e) => {
         setProduct({ ...product, [e.target.name]: e.target.value }) //key : value 값으로
@@ -25,7 +25,7 @@ const ProductBuy = () => {
     const executeSearch = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.get(`http://localhost:8000/search?input=${product.title}`);
+            const response = await axios.get(`http://localhost:8000/products/search?input=${product.title}`);
             setSearchResults(response.data)
         } catch (error) {
             console.error('Search failed:', error);
@@ -35,29 +35,59 @@ const ProductBuy = () => {
 
     // 검색 결과를 렌더링하는 함수
     const renderSearchResults = () => {
-        return searchResults.map((item, index) => (
-            <div key={index}>
-                <h3>{item.title}</h3>
-                <p>{item.price}</p>
-            </div>
-        ));
+        return (
+            <table className="table">
+                <thead>
+                    <tr>
+                        {/* 각 열의 제목들 몇개는 삭제? */}
+                        <th>제목</th>
+                        <th>이메일</th>
+                        <th>사진</th>
+                        <th>즉시 구매가</th>
+                        <th>경매 종료시간</th>
+                        <th>경매 상태</th>
+                        <th>ISBN</th>
+                        <th>내용</th>
+                        <th>구매</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {searchResults.map((item, index) => (
+                        <tr key={index}>
+                            <td>{item.title}</td>
+                            <td>{item.email}</td>
+                            <td><img src={item.picture} alt={item.title} style={{ width: '100px' }} /></td>
+                            <td>{item.master_price}</td>
+                            <td>{new Date(item.endtime).toLocaleString()}</td>
+                            <td>{item.auction_status}</td>
+                            <td>{item.isbn}</td>
+                            <td>{item.content}</td>
+                            <td>
+                                <button className="btn btn-primary" onClick={() => handleBuyClick(item)}>구매하기</button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        );
     };
 
 
 
-    // const getProductBuy = async () => {
-    //     const resp = await axios.post('http://localhost:8000/products/buy')
-    //     setProduct(resp.data.data)
-    // navigate('/product/list')
+    const handleBuyClick = (item) => {
+        // 상품 정보를 설정하고 구매 요청을 보냄
+        setProduct({
+            ...product,
+            product_id: item.product_id,
+            title: item.title,
+            master_price: item.master_price,
+            isbn: item.isbn,
+            // 다른 필요한 필드도 이곳에 추가할 수 있다.
+        });
 
-    //--------------------------------------------------------------
-    // const buyProduct = useCallback(async (e) => {
-    //     e.preventDefault();
-    //     await axios.post('http://localhost:8000/products/buy', product);
-    //     if (resp.product.status === 500) window.alert("상품이 없습니다.")
-    //     else navigate('/product/list');
-    // }, [product, navigate]);
-
+        // 구매 요청 함수를 호출
+        buyProduct();
+    };
     const buyProduct = useCallback(async (e) => {
         e.preventDefault();
         try {
@@ -73,6 +103,20 @@ const ProductBuy = () => {
         }
     }, [product, navigate]);
 
+
+
+    // const getProductBuy = async () => {
+    //     const resp = await axios.post('http://localhost:8000/products/buy')
+    //     setProduct(resp.data.data)
+    // navigate('/product/list')
+
+    //--------------------------------------------------------------
+    // const buyProduct = useCallback(async (e) => {
+    //     e.preventDefault();
+    //     await axios.post('http://localhost:8000/products/buy', product);
+    //     if (resp.product.status === 500) window.alert("상품이 없습니다.")
+    //     else navigate('/product/list');
+    // }, [product, navigate]);
 
     // useEffect(() => {
     //     getProductBuy()
