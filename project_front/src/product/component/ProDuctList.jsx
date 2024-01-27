@@ -28,7 +28,7 @@ const ProductList = () => {
             {/* // <!--================Home Banner Area =================-->
         // <!-- breadcrumb start--> */}
             <div>
-                <section className="breadcrumb breadcrumb_bg" style={{backgroundSize: "300px"}}> 
+                <section className="breadcrumb breadcrumb_bg" style={{ backgroundSize: "300px" }}>
                     {/* <section className="breadcrumb breadcrumb_bg"> style={{backgroundImage: "url(img/b-mic.png)"}} */}
                     <div className="container">
                         <div className="row justify-content-center">
@@ -197,7 +197,8 @@ const ProductList = () => {
                                             <div className="single_product_menu d-flex">
                                                 {/* <h5>show :</h5> */}
                                                 {/* <Link className="dropdown-item" to="/products/buy"> 상품 구매하기</Link> */}
-                                                <Link to="/products/buy" className="list-group-item list-group-item-action list-group-item-danger">상품 구매하기</Link>
+                                                <Link to="/products/buy" className="list-group-item list-group-item-action list-group-item-danger">
+                                                    상품 구매하기</Link>
                                                 <div className="top_pageniation">
                                                     <ul>
                                                         {/* <li>1</li>
@@ -224,90 +225,99 @@ const ProductList = () => {
 
                                     <div className="col-lg-4 col-sm-6">
                                         <div className="single_product_item">
-                                            <img src="img/product/product_1.png" alt="" />
+                                            <img src="/img/football.png" alt="" />
                                             <div className="single_product_text">
-                                                <h4>상품1</h4>
-                                                <h3>$150.00</h3>
+                                                <h4>축구 : 최고의 게임을 위한 가이드</h4>
+                                                <h3>클리브 기포드 (지은이), 김성규 (옮긴이)</h3>
+                                                <h3>$10000원</h3>
                                                 <Link to="#" className="add_cart">+ 상품 자세히 보기<i className="ti-heart"></i></Link>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="col-lg-4 col-sm-6">
                                         <div className="single_product_item">
-                                            <img src="img/product/product_2.png" alt="" />
+                                            <img src="/img/football.png" alt="" />
                                             <div className="single_product_text">
-                                                <h4>상품2</h4>
-                                                <h3>$150.00</h3>
+                                                <h4>축구 : 최고의 게임을 위한 가이드</h4>
+                                                <h3>클리브 기포드 (지은이), 김성규 (옮긴이)</h3>
+                                                <h3>$10000원</h3>
                                                 <Link to="#" className="add_cart">+ 상품 자세히 보기<i className="ti-heart"></i></Link>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="col-lg-4 col-sm-6">
                                         <div className="single_product_item">
-                                            <img src="img/product/product_3.png" alt="" />
+                                            <img src="/img/football.png" alt="" />
                                             <div className="single_product_text">
-                                                <h4>상품3</h4>
-                                                <h3>$150.00</h3>
+                                                <h4>축구 : 최고의 게임을 위한 가이드</h4>
+                                                <h3>클리브 기포드 (지은이), 김성규 (옮긴이)</h3>
+                                                <h3>$10000원</h3>
                                                 <Link to="#" className="add_cart">+ 상품 자세히 보기<i className="ti-heart"></i></Link>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="col-lg-4 col-sm-6">
                                         <div className="single_product_item">
-                                            <img src="img/product/product_4.png" alt="" />
+                                            <img src="/img/football.png" alt="" />
                                             <div className="single_product_text">
-                                                <h4>상품4</h4>
-                                                <h3>$150.00</h3>
+                                                <h4>축구 : 최고의 게임을 위한 가이드</h4>
+                                                <h3>클리브 기포드 (지은이), 김성규 (옮긴이)</h3>
+                                                <h3>$10000원</h3>
                                                 <Link to="#" className="add_cart">+ 상품 자세히 보기<i className="ti-heart"></i></Link>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="col-lg-4 col-sm-6">
                                         <div className="single_product_item">
-                                            <img src="img/product/product_5.png" alt="" />
+                                            <img src="/img/football.png" alt="" />
                                             <div className="single_product_text">
-                                                <h4>상품5</h4>
-                                                <h3>$150.00</h3>
+                                                <h4>축구 : 최고의 게임을 위한 가이드</h4>
+                                                <h3>클리브 기포드 (지은이), 김성규 (옮긴이)</h3>
+                                                <h3>$10000원</h3>
                                                 <Link to="#" className="add_cart">+ 상품 자세히 보기<i className="ti-heart"></i></Link>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="col-lg-4 col-sm-6">
                                         <div className="single_product_item">
-                                            <img src="img/product/product_6.png" alt="" />
+                                            <img src="/img/football.png" alt="" />
                                             <div className="single_product_text">
-                                                <h4>상품6</h4>
-                                                <h3>$150.00</h3>
+                                                <h4>축구 : 최고의 게임을 위한 가이드</h4>
+                                                <h3>클리브 기포드 (지은이), 김성규 (옮긴이)</h3>
+                                                <h3>$10000원</h3>
                                                 <Link to="#" className="add_cart">+ 상품 자세히 보기<i className="ti-heart"></i></Link>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="col-lg-4 col-sm-6">
                                         <div className="single_product_item">
-                                            <img src="img/product/product_7.png" alt="" />
+                                            <img src="/img/football.png" alt="" />
                                             <div className="single_product_text">
-                                                <h4>상품7</h4>
-                                                <h3>$150.00</h3>
+                                                <h4>축구 : 최고의 게임을 위한 가이드</h4>
+                                                <h3>클리브 기포드 (지은이), 김성규 (옮긴이)</h3>
+                                                <h3>$10000원</h3>
                                                 <Link to="#" className="add_cart">+ 상품 자세히 보기<i className="ti-heart"></i></Link>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="col-lg-4 col-sm-6">
                                         <div className="single_product_item">
-                                            <img src="img/product/product_8.png" alt="" />
+                                            <img src="/img/football.png" alt="" />
                                             <div className="single_product_text">
-                                                <h4>상품8</h4>
-                                                <h3>$150.00</h3>
+                                                <h4>축구 : 최고의 게임을 위한 가이드</h4>
+                                                <h3>클리브 기포드 (지은이), 김성규 (옮긴이)</h3>
+                                                <h3>$10000원</h3>
                                                 <Link to="#" className="add_cart">+ 상품 자세히 보기<i className="ti-heart"></i></Link>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="col-lg-4 col-sm-6">
                                         <div className="single_product_item">
-                                            <img src="img/product/product_2.png" alt="" />
+                                            <img src="/img/football.png" alt="" />
                                             <div className="single_product_text">
-                                                <h4>상품9</h4>
-                                                <h3>$150.00</h3>
+                                                <h4>축구 : 최고의 게임을 위한 가이드</h4>
+                                                <h3>클리브 기포드 (지은이), 김성규 (옮긴이)</h3>
+                                                <h3>$10000원</h3>
                                                 <Link to="#" className="add_cart">+ 상품 자세히 보기<i className="ti-heart"></i></Link>
                                             </div>
                                         </div>
@@ -358,6 +368,8 @@ const ProductList = () => {
                                 <div className="best_product_slider owl-carousel">
                                     <div className="single_product_item">
                                         <img src="img/product/product_1.png" alt="" />
+                                        {/*이 부분은 사진이 출력이 안된다. 아마 홈 윗 부분처럼 JS 파일을 수정해야 사용 가능할듯
+                                        근데 수정을 어디를 어떻게 해야하는지..*/}
                                         <div className="single_product_text">
                                             <h4>Quartz Belt Watch</h4>
                                             <h3>$150.00</h3>

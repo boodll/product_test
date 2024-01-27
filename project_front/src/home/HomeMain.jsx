@@ -8,7 +8,7 @@ const HomeMain = () => {
             {/* <Header /> */}
                 
             {/* <!-- breadcrumb start--> */}
-    <section class="breadcrumb breadcrumb_bg" style={{backgroundSize: "300px"}}>
+    <section className="breadcrumb breadcrumb_bg" style={{backgroundSize: "300px"}}>
         <div className="container">
             <div className="row justify-content-center">
                 <div className="col-lg-8">

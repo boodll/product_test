@@ -5,7 +5,7 @@ import axios from 'axios';
 const ProductBuy = () => {
     const navigate = useNavigate() //다른 페이지로 이동을 위해서 사용
 
-    const { id } = useParams()
+    // const { id } = useParams()
     const [product, setProduct] = useState({ //상품 정보 저장
         product_id: "",
         title: "",
@@ -36,7 +36,7 @@ const ProductBuy = () => {
     // 검색 결과를 렌더링하는 함수
     const renderSearchResults = () => {
         return (
-            <table className="table">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         {/* 각 열의 제목들 몇개는 삭제? */}
@@ -63,12 +63,12 @@ const ProductBuy = () => {
                             <td>{item.isbn}</td>
                             <td>{item.content}</td>
                             <td>
-                                <button className="btn btn-primary" onClick={() => handleBuyClick(item)}>구매하기</button>
+                                <button className="btn btn-primary" onClick={() => handleBuyClick(item)}>구매 등록하기</button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
-            </table>
+            </table >
         );
     };
 
@@ -84,7 +84,17 @@ const ProductBuy = () => {
             isbn: item.isbn,
             // 다른 필요한 필드도 이곳에 추가할 수 있다.
         });
-
+        const userConfirmed = window.confirm(`정말로 "${item.title}"을(를) 구매하시겠습니까?`);
+        if (userConfirmed) {
+            // 확인 누르면 실행
+            console.log("사용자가 구매를 확인했습니다."); //확인 버튼 클릭시 productlist 페이지
+            alert('구매신청완료'); // 알림 표시
+            navigate('/'); // 메인 페이지로 이동
+        } else {
+            // 사용자가 취소를 누르면 실행
+            console.log("사용자가 구매를 취소했거나 창을 닫았습니다."); //취소 버튼 클릭시 buy 페이지
+            alert('구매취소');
+        }
         // 구매 요청 함수를 호출
         buyProduct();
     };
@@ -134,7 +144,7 @@ const ProductBuy = () => {
                                 <div className="breadcrumb_iner">
                                     <div className="breadcrumb_iner_item">
                                         <h2>ProDuct Buy</h2>
-                                        <p>Home <span>-</span> ProDuct Buy</p>
+                                        <p>ProDuct List <span>-</span> ProDuct Buy</p>
                                     </div>
                                 </div>
                             </div>
