@@ -1,19 +1,21 @@
-import React, { useCallback, useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import axios from 'axios'
-
+import React, { useCallback, useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const ProductList = () => {
-    const navigate = useNavigate()
-    // const {id} = useParams()
-    // console.log('제품 ID', id)
+    const navigate = useNavigate();
     const [productList, setProductList] = useState({
         status: "", message: "", data: []
-    })
+    });
+
     // 서버연동?
     const getProductList = useCallback(async () => {
-        const resp = await axios.get('http://localhost:8000/products/productList')
-        setProductList(resp.data)
+        try {
+            const resp = await axios.get('http://localhost:8000/products/productlist')
+            setProductList(resp.data)
+        } catch (error) {
+            console.error("페이지 불러오기 실패", error);
+        }
     }, [])
 
     useEffect(() => {
@@ -21,14 +23,12 @@ const ProductList = () => {
         getProductList()
     }, [getProductList])
 
-
-
     return (
         <main id="main">
             {/* // <!--================Home Banner Area =================-->
         // <!-- breadcrumb start--> */}
             <div>
-                <section className="breadcrumb breadcrumb_bg" style={{backgroundSize: "300px"}}> 
+                <section className="breadcrumb breadcrumb_bg" style={{ backgroundSize: "300px" }}>
                     {/* <section className="breadcrumb breadcrumb_bg"> style={{backgroundImage: "url(img/b-mic.png)"}} */}
                     <div className="container">
                         <div className="row justify-content-center">
@@ -53,109 +53,69 @@ const ProductList = () => {
                                 <div className="left_sidebar_area">
                                     <aside className="left_widgets p_filter_widgets">
                                         <div className="l_w_title">
-                                            <h3>Browse Categories</h3>
+                                            <h3>도서 별 카테고리</h3>
                                         </div>
                                         <div className="widgets_inner">
                                             <ul className="list">
                                                 <li>
-                                                    <Link to="#">Frozen Fish</Link>
+                                                    <Link to="#">건강/취미</Link>
                                                     <span>(250)</span>
                                                 </li>
                                                 <li>
-                                                    <Link to="#">Dried Fish</Link>
+                                                    <Link to="#">만화</Link>
                                                     <span>(250)</span>
                                                 </li>
                                                 <li>
-                                                    <Link to="#">Fresh Fish</Link>
+                                                    <Link to="#">여행</Link>
                                                     <span>(250)</span>
                                                 </li>
                                                 <li>
-                                                    <Link to="#">Meat Alternatives</Link>
+                                                    <Link to="#">역사</Link>
                                                     <span>(250)</span>
                                                 </li>
                                                 <li>
-                                                    <Link to="#">Fresh Fish</Link>
+                                                    <Link to="#">판타지</Link>
                                                     <span>(250)</span>
                                                 </li>
                                                 <li>
-                                                    <Link to="#">Meat Alternatives</Link>
+                                                    <Link to="#">장편소설/단편소설</Link>
                                                     <span>(250)</span>
                                                 </li>
                                                 <li>
-                                                    <Link to="#">Meat</Link>
+                                                    <Link to="#">자기계발</Link>
+                                                    <span>(250)</span>
+                                                </li>
+                                                <li>
+                                                    <Link to="#">외국어</Link>
+                                                    <span>(250)</span>
+                                                </li>
+                                                <li>
+                                                    <Link to="#">어린이</Link>
+                                                    <span>(250)</span>
+                                                </li>
+                                                <li>
+                                                    <Link to="#">잡지</Link>
+                                                    <span>(250)</span>
+                                                </li>
+                                                <li>
+                                                    <Link to="#">컴퓨터/모바일</Link>
+                                                    <span>(250)</span>
+                                                </li>
+                                                <li>
+                                                    <Link to="#">예술/문화</Link>
+                                                    <span>(250)</span>
+                                                </li>
+                                                <li>
+                                                    <Link to="#">요리</Link>
+                                                    <span>(250)</span>
+                                                </li>
+                                                <li>
+                                                    <Link to="#">수험서/자격증</Link>
                                                     <span>(250)</span>
                                                 </li>
                                             </ul>
                                         </div>
                                     </aside>
-
-                                    <aside className="left_widgets p_filter_widgets">
-                                        <div className="l_w_title">
-                                            <h3>Product filters</h3>
-                                        </div>
-                                        <div className="widgets_inner">
-                                            <ul className="list">
-                                                <li>
-                                                    <Link to="#">Apple</Link>
-                                                </li>
-                                                <li>
-                                                    <Link to="#">Asus</Link>
-                                                </li>
-                                                <li className="active">
-                                                    <Link to="#">Gionee</Link>
-                                                </li>
-                                                <li>
-                                                    <Link to="#">Micromax</Link>
-                                                </li>
-                                                <li>
-                                                    <Link to="#">Samsung</Link>
-                                                </li>
-                                            </ul>
-                                            <ul className="list">
-                                                <li>
-                                                    <Link to="#">Apple</Link>
-                                                </li>
-                                                <li>
-                                                    <Link to="#">Asus</Link>
-                                                </li>
-                                                <li className="active">
-                                                    <Link to="#">Gionee</Link>
-                                                </li>
-                                                <li>
-                                                    <Link to="#">Micromax</Link>
-                                                </li>
-                                                <li>
-                                                    <Link to="#">Samsung</Link>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </aside>
-
-                                    <aside className="left_widgets p_filter_widgets">
-                                        <div className="l_w_title">
-                                            <h3>Color Filter</h3>
-                                        </div>
-                                        <div className="widgets_inner">
-                                            <ul className="list">
-                                                <li>
-                                                    <Link to="#">Black</Link>
-                                                </li>
-                                                <li>
-                                                    <Link to="#">Black Leather</Link>
-                                                </li>
-                                                <li className="active">
-                                                    <Link to="#">Black with red</Link>
-                                                </li>
-                                                <li>
-                                                    <Link to="#">Gold</Link>
-                                                </li>
-                                                <li>
-                                                    <Link to="#">Spacegrey</Link>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </aside>
-
                                     <aside className="left_widgets p_filter_widgets price_rangs_aside">
                                         <div className="l_w_title">
                                             <h3>Price Filter</h3>
@@ -221,93 +181,101 @@ const ProductList = () => {
                                 </div>
 
                                 <div className="row align-items-center latest_product_inner">
-
                                     <div className="col-lg-4 col-sm-6">
                                         <div className="single_product_item">
-                                            <img src="img/product/product_1.png" alt="" />
+                                            <img src="/img/product/list1.png" alt="" />
                                             <div className="single_product_text">
-                                                <h4>상품1</h4>
-                                                <h3>$150.00</h3>
+                                                <h4>(아키텐의) 엘레오노르 : 중세 유럽을 지배한 매혹적인 여인</h4>
+                                                <h3>가격:10000원</h3>
+                                                <h3>저자:앨리슨 위어</h3>
                                                 <Link to="#" className="add_cart">+ 상품 자세히 보기<i className="ti-heart"></i></Link>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="col-lg-4 col-sm-6">
                                         <div className="single_product_item">
-                                            <img src="img/product/product_2.png" alt="" />
+                                            <img src="/img/product/list2.png" alt="" />
                                             <div className="single_product_text">
-                                                <h4>상품2</h4>
-                                                <h3>$150.00</h3>
+                                                <h4>칼레발라 : 핀란드 민족 서사시</h4>
+                                                <h3>가격:10000원</h3>
+                                                <h3>저자:엘리아스 뢴로트</h3>
                                                 <Link to="#" className="add_cart">+ 상품 자세히 보기<i className="ti-heart"></i></Link>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="col-lg-4 col-sm-6">
                                         <div className="single_product_item">
-                                            <img src="img/product/product_3.png" alt="" />
+                                            <img src="/img/product/list3.png" alt="" />
                                             <div className="single_product_text">
-                                                <h4>상품3</h4>
-                                                <h3>$150.00</h3>
+                                                <h4>사랑의 역사</h4>
+                                                <h3>가격:10000원</h3>
+                                                <h3>저자:니콜 크라우스</h3>
                                                 <Link to="#" className="add_cart">+ 상품 자세히 보기<i className="ti-heart"></i></Link>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="col-lg-4 col-sm-6">
                                         <div className="single_product_item">
-                                            <img src="img/product/product_4.png" alt="" />
+                                            <img src="/img/product/list4.png" alt="" />
                                             <div className="single_product_text">
-                                                <h4>상품4</h4>
-                                                <h3>$150.00</h3>
+                                                <h4>오래된 새 책 : 절판된 책에 바치는 헌사</h4>
+                                                <h3>가격:10000원</h3>
+                                                <h3>저자:박균호</h3>
                                                 <Link to="#" className="add_cart">+ 상품 자세히 보기<i className="ti-heart"></i></Link>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="col-lg-4 col-sm-6">
                                         <div className="single_product_item">
-                                            <img src="img/product/product_5.png" alt="" />
+                                            <img src="/img/product/list5.png" alt="" />
                                             <div className="single_product_text">
-                                                <h4>상품5</h4>
-                                                <h3>$150.00</h3>
+                                                <h4>리스크에 과감히 맞서라</h4>
+                                                <h3>가격:10000원</h3>
+                                                <h3>저자:세이안 채터리지</h3>
                                                 <Link to="#" className="add_cart">+ 상품 자세히 보기<i className="ti-heart"></i></Link>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="col-lg-4 col-sm-6">
                                         <div className="single_product_item">
-                                            <img src="img/product/product_6.png" alt="" />
+                                            <img src="/img/product/list6.png" alt="" />
                                             <div className="single_product_text">
-                                                <h4>상품6</h4>
-                                                <h3>$150.00</h3>
+                                                <h4>아몬드</h4>
+                                                <h3>가격:10000원</h3>
+                                                <h3>저자:손원평</h3>
                                                 <Link to="#" className="add_cart">+ 상품 자세히 보기<i className="ti-heart"></i></Link>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="col-lg-4 col-sm-6">
                                         <div className="single_product_item">
-                                            <img src="img/product/product_7.png" alt="" />
+                                            <img src="/img/product/list7.png" alt="" />
                                             <div className="single_product_text">
-                                                <h4>상품7</h4>
-                                                <h3>$150.00</h3>
+                                                <h4>책을 지키려는 고양이</h4>
+                                                <h3>가격:10000원</h3>
+                                                <h3>저자:나쓰카와 소스케</h3>
                                                 <Link to="#" className="add_cart">+ 상품 자세히 보기<i className="ti-heart"></i></Link>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="col-lg-4 col-sm-6">
                                         <div className="single_product_item">
-                                            <img src="img/product/product_8.png" alt="" />
+                                            <img src="/img/product/list8.png" alt="" />
                                             <div className="single_product_text">
-                                                <h4>상품8</h4>
-                                                <h3>$150.00</h3>
+                                                <h4>돈으로 살 수 없는 것들 : 무엇이 가치를 결정하는가</h4>
+                                                <h3>가격:10000원</h3>
+                                                <h3>저자:마이클 센델</h3>
                                                 <Link to="#" className="add_cart">+ 상품 자세히 보기<i className="ti-heart"></i></Link>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="col-lg-4 col-sm-6">
                                         <div className="single_product_item">
-                                            <img src="img/product/product_2.png" alt="" />
+                                            <img src="/img/product/list9.png" alt="" />
                                             <div className="single_product_text">
-                                                <h4>상품9</h4>
-                                                <h3>$150.00</h3>
+                                                <h4>명작을 읽는 기술 : 문학의 줄기를 잡다</h4>
+                                                <h3>가격:10000원</h3>
+                                                <h3>저자:박경서</h3>
                                                 <Link to="#" className="add_cart">+ 상품 자세히 보기<i className="ti-heart"></i></Link>
                                             </div>
                                         </div>
@@ -342,61 +310,6 @@ const ProductList = () => {
                     </div>
                 </section>
                 {/* <!--================End Category Product Area =================-->
-
-        <!-- product_list part start--> */}
-                <section className="product_list best_seller">
-                    <div className="container">
-                        <div className="row justify-content-center">
-                            <div className="col-lg-12">
-                                <div className="section_tittle text-center">
-                                    <h2>Best Sellers <span>shop</span></h2>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="row align-items-center justify-content-between">
-                            <div className="col-lg-12">
-                                <div className="best_product_slider owl-carousel">
-                                    <div className="single_product_item">
-                                        <img src="img/product/product_1.png" alt="" />
-                                        <div className="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                        </div>
-                                    </div>
-                                    <div className="single_product_item">
-                                        <img src="img/product/product_2.png" alt="" />
-                                        <div className="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                        </div>
-                                    </div>
-                                    <div className="single_product_item">
-                                        <img src="img/product/product_3.png" alt="" />
-                                        <div className="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                        </div>
-                                    </div>
-                                    <div className="single_product_item">
-                                        <img src="img/product/product_4.png" alt="" />
-                                        <div className="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                        </div>
-                                    </div>
-                                    <div className="single_product_item">
-                                        <img src="img/product/product_5.png" alt="" />
-                                        <div className="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                {/* <!-- product_list part end--> */}
 
                 {/* <!--::footer_part start::--> */}
                 <footer class="footer_part">
@@ -493,8 +406,8 @@ const ProductList = () => {
                     </div>
                 </footer>
                 {/* <!--::footer_part end::--> */}
-            </div>
-        </main>
+            </div >
+        </main >
     )
 }
 export default ProductList

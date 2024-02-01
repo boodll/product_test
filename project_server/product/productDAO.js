@@ -1,5 +1,6 @@
 //데이터베이스와 상호작용
 const getPool = require("../common/pool");
+const axios = require('axios');
 
 const sql = {
     productList: "select * from product",
@@ -33,6 +34,7 @@ const productDAO = {
             if (conn !== null) conn.release()
         }
     },
+    
 
 
     buy: async (item, callback) => {
@@ -59,7 +61,11 @@ const productDAO = {
         }
     },
 
+
+
+
     
+
 
 
     detail: async (item, callback) => {

@@ -5,7 +5,7 @@ import axios from 'axios';
 const ProductBuy = () => {
     const navigate = useNavigate() //다른 페이지로 이동을 위해서 사용
 
-    const { id } = useParams()
+    // const { id } = useParams()
     const [product, setProduct] = useState({ //상품 정보 저장
         product_id: "",
         title: "",
@@ -41,7 +41,6 @@ const ProductBuy = () => {
                     <tr>
                         {/* 각 열의 제목들 몇개는 삭제? */}
                         <th>제목</th>
-                        <th>이메일</th>
                         <th>사진</th>
                         <th>즉시 구매가</th>
                         <th>경매 종료시간</th>
@@ -55,7 +54,6 @@ const ProductBuy = () => {
                     {searchResults.map((item, index) => (
                         <tr key={index}>
                             <td>{item.title}</td>
-                            <td>{item.email}</td>
                             <td><img src={item.picture} alt={item.title} style={{ width: '100px' }} /></td>
                             <td>{item.master_price}</td>
                             <td>{new Date(item.endtime).toLocaleString()}</td>
@@ -76,20 +74,26 @@ const ProductBuy = () => {
 
     const handleBuyClick = (item) => {
         // 상품 정보를 설정하고 구매 요청을 보냄
-        setProduct({
-            ...product,
-            product_id: item.product_id,
-            title: item.title,
-            master_price: item.master_price,
-            isbn: item.isbn,
-            // 다른 필요한 필드도 이곳에 추가할 수 있다.
-        });
+        const confirmPurchase = window.confirm("구매하시겠습니까?");
+        if (confirmPurchase) {
+            // 사용자가 확인을 클릭한 경우 상품 정보를 설정하고 구매 요청을 보냄
+            setProduct({
+                ...product,
+                product_id: item.product_id,
+                title: item.title,
+                master_price: item.master_price,
+                isbn: item.isbn,
+                // 다른 필요한 필드도 이곳에 추가할 수 있다.
+            });
+            // 구매 요청 함수를 호출
+            buyProduct();
+            navigate("/products/list"); // 절대 경로 사용
+        } else {
+            alert("취소 되었습니다.")
+        }
+    }
 
-        // 구매 요청 함수를 호출
-        buyProduct();
-    };
-    const buyProduct = useCallback(async (e) => {
-        e.preventDefault();
+    const buyProduct = useCallback(async () => {
         try {
             const response = await axios.post('http://localhost:8000/products/buy', product);
             if (response.status === 500) {

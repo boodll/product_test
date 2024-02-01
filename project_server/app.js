@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 // 클라이언트 요청 데이터, 응답 데이터를 위해서 등록
 app.use(express.json())
-app.use(express.urlencoded({extended: true})) //http요청의 body parser(즉 form post요청 => request body에 인코딩된 데이터를 해석하여 req.body에 넣음)
+app.use(express.urlencoded({ extended: true })) //http요청의 body parser(즉 form post요청 => request body에 인코딩된 데이터를 해석하여 req.body에 넣음)
 
 // 개발자가 각 파일로 분리시킨 라우터 등록
 app.use('/', homeRouter)
@@ -51,3 +51,4 @@ app.use((err, req, res, next) => {
 app.listen(8000, () => {
     console.log('8000번 포트에서 대기중...')
 })
+
