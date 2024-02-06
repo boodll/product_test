@@ -131,7 +131,12 @@ const ProductBuy = () => {
             {/* // <!--================Home Banner Area =================-->
         // <!-- breadcrumb start--> */}
             <div>
-                <section className="breadcrumb breadcrumb_bg" style={{ backgroundSize: "300px" }}>
+                <section className="breadcrumb" style={{
+                    backgroundImage: "url('/img/b-mic.png')",
+                    backgroundSize: "300px",
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'center'
+                }}>
                     <div className="container">
                         <div className="row justify-content-center">
                             <div className="col-lg-8">

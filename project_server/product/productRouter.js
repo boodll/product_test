@@ -21,6 +21,23 @@ router.post("/buy", function (req, res, next) {
     });
 });
 
+// list 페이지에서 상품목록을 구현.. 
+router.get('/products/productlist', (req, res) => {
+    const url = `https://www.nl.go.kr/NL/search/openApi/searchKolisNet.do?key=39b4dd4a523f80ea24ba476b79fc50c968db9622ffd612dc415b4176e41ccadd&apiType=json`;
+
+    axios.get(url)
+        .then(apiResponse => {
+            // 오픈 API로부터 응답을 성공적으로 받으면, 그 데이터를 클라이언트에게 전송
+            res.json(apiResponse.data);
+        })
+        .catch(error => {
+            // 외부 API 요청 중 에러가 발생하면, 에러 메시지를 로그에 기록하고 클라이언트에게 에러 응답을 전송
+            console.error('Error:', error);
+            res.status(500).send('External API request failed');
+        });
+});
+
+
 
 // 화면메인 부분 - 준영님
 

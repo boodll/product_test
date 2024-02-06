@@ -2,33 +2,42 @@ import React, { useCallback, useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const ProductList = () => {
-    const navigate = useNavigate();
-    const [productList, setProductList] = useState({
-        status: "", message: "", data: []
-    });
+
+    const ProductList = () => {
+        // const navigate = useNavigate();
+        const [products, setProducts] = useState([]); // 상태 초기화를 빈 배열로 설정
+        // const [productList, setProductList] = useState({
+        //     status: "", message: "", data: []
+        // });
 
     // 서버연동?
     const getProductList = useCallback(async () => {
         try {
-            const resp = await axios.get('http://localhost:8000/products/productlist')
-            setProductList(resp.data)
+            // Node.js 서버를 통해 데이터를 요청하는 URL로?
+            const resp = await axios.get('http://localhost:8000/products/productlist');
+            console.log("데이터 확인 해보기", resp.data); // 콘솔에서 데이터 확인
+            setProducts(resp.data.data); // 상태 업데이트, resp.data.data는 API 응답 구조에 따라 조정필요
         } catch (error) {
             console.error("페이지 불러오기 실패", error);
         }
-    }, [])
+    }, []);
 
     useEffect(() => {
-        //서버에서 최초에 한번만 데이터를 받아오면 되지 않을까 싶어서..
-        getProductList()
-    }, [getProductList])
+        getProductList(); // 컴포넌트 마운트 시 상품 목록 가져오기
+    }, [getProductList]);
+
 
     return (
-        <main id="main">
-            {/* // <!--================Home Banner Area =================-->
-        // <!-- breadcrumb start--> */}
+        <main>
+            {/*  <!--================Home Banner Area =================-->
+            <!-- breadcrumb start--> */}
             <div>
-                <section className="breadcrumb breadcrumb_bg" style={{ backgroundSize: "300px" }}>
+                <section className="breadcrumb" style={{
+                    backgroundImage: "url('/img/b-mic.png')",
+                    backgroundSize: "300px",
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'center'
+                }}>
                     {/* <section className="breadcrumb breadcrumb_bg"> style={{backgroundImage: "url(img/b-mic.png)"}} */}
                     <div className="container">
                         <div className="row justify-content-center">
@@ -53,7 +62,7 @@ const ProductList = () => {
                                 <div className="left_sidebar_area">
                                     <aside className="left_widgets p_filter_widgets">
                                         <div className="l_w_title">
-                                            <h3>도서 별 카테고리</h3>
+                                            <h3>카테고리 별 도서</h3>
                                         </div>
                                         <div className="widgets_inner">
                                             <ul className="list">
@@ -129,9 +138,9 @@ const ProductList = () => {
                                                         <p>Price :</p>
                                                     </div>
                                                     <div className="price_value d-flex justify-content-center">
-                                                        <input type="text" className="js-input-from" id="amount" readonly />
+                                                        <input type="text" className="js-input-from" id="amount" readOnly />
                                                         <span>to</span>
-                                                        <input type="text" className="js-input-to" id="amount" readonly />
+                                                        <input type="text" className="js-input-to" id="amount" readOnly />
                                                     </div>
                                                 </div>
                                             </div>
@@ -179,7 +188,6 @@ const ProductList = () => {
                                         </div>
                                     </div>
                                 </div>
-
                                 <div className="row align-items-center latest_product_inner">
                                     <div className="col-lg-4 col-sm-6">
                                         <div className="single_product_item">
@@ -312,13 +320,13 @@ const ProductList = () => {
                 {/* <!--================End Category Product Area =================-->
 
                 {/* <!--::footer_part start::--> */}
-                <footer class="footer_part">
-                    <div class="container">
-                        <div class="row justify-content-around">
-                            <div class="col-sm-6 col-lg-2">
-                                <div class="single_footer_part">
+                <footer className="footer_part">
+                    <div className="container">
+                        <div className="row justify-content-around">
+                            <div className="col-sm-6 col-lg-2">
+                                <div className="single_footer_part">
                                     <h4>Top Products</h4>
-                                    <ul class="list-unstyled">
+                                    <ul className="list-unstyled">
                                         <li><a href="">Managed Website</a></li>
                                         <li><a href="">Manage Reputation</a></li>
                                         <li><a href="">Power Tools</a></li>
@@ -326,10 +334,10 @@ const ProductList = () => {
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-sm-6 col-lg-2">
-                                <div class="single_footer_part">
+                            <div className="col-sm-6 col-lg-2">
+                                <div className="single_footer_part">
                                     <h4>Quick Links</h4>
-                                    <ul class="list-unstyled">
+                                    <ul className="list-unstyled">
                                         <li><a href="">Jobs</a></li>
                                         <li><a href="">Brand Assets</a></li>
                                         <li><a href="">Investor Relations</a></li>
@@ -337,10 +345,10 @@ const ProductList = () => {
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-sm-6 col-lg-2">
-                                <div class="single_footer_part">
+                            <div className="col-sm-6 col-lg-2">
+                                <div className="single_footer_part">
                                     <h4>Features</h4>
-                                    <ul class="list-unstyled">
+                                    <ul className="list-unstyled">
                                         <li><a href="">Jobs</a></li>
                                         <li><a href="">Brand Assets</a></li>
                                         <li><a href="">Investor Relations</a></li>
@@ -348,10 +356,10 @@ const ProductList = () => {
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-sm-6 col-lg-2">
-                                <div class="single_footer_part">
+                            <div className="col-sm-6 col-lg-2">
+                                <div className="single_footer_part">
                                     <h4>Resources</h4>
-                                    <ul class="list-unstyled">
+                                    <ul className="list-unstyled">
                                         <li><a href="">Guides</a></li>
                                         <li><a href="">Research</a></li>
                                         <li><a href="">Experts</a></li>
@@ -359,21 +367,21 @@ const ProductList = () => {
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-sm-6 col-lg-4">
-                                <div class="single_footer_part">
+                            <div className="col-sm-6 col-lg-4">
+                                <div className="single_footer_part">
                                     <h4>Newsletter</h4>
                                     <p>Heaven fruitful doesn't over lesser in days. Appear creeping
                                     </p>
                                     <div id="mc_embed_signup">
                                         <form target="_blank"
                                             action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                                            method="get" class="subscribe_form relative mail_part">
+                                            method="get" className="subscribe_form relative mail_part">
                                             <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
-                                                class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
-                                                onblur="this.placeholder = ' Email Address '" />
+                                                className="placeholder hide-on-focus" onFocus="this.placeholder = ''"
+                                                onBlur="this.placeholder = ' Email Address '" />
                                             <button type="submit" name="submit" id="newsletter-submit"
-                                                class="email_icon newsletter-submit button-contactForm">subscribe</button>
-                                            <div class="mt-10 info"></div>
+                                                className="email_icon newsletter-submit button-contactForm">subscribe</button>
+                                            <div className="mt-10 info"></div>
                                         </form>
                                     </div>
                                 </div>
@@ -381,23 +389,23 @@ const ProductList = () => {
                         </div>
 
                     </div>
-                    <div class="copyright_part">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    <div class="copyright_text">
+                    <div className="copyright_part">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-lg-8">
+                                    <div className="copyright_text">
                                         {/* <P><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                                            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i className="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></P> */}
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
-                                    <div class="footer_icon social_icon">
-                                        <ul class="list-unstyled">
-                                            <li><a href="#" class="single_social_icon"><i class="fab fa-facebook-f"></i></a></li>
-                                            <li><a href="#" class="single_social_icon"><i class="fab fa-twitter"></i></a></li>
-                                            <li><a href="#" class="single_social_icon"><i class="fas fa-globe"></i></a></li>
-                                            <li><a href="#" class="single_social_icon"><i class="fab fa-behance"></i></a></li>
+                                <div className="col-lg-4">
+                                    <div className="footer_icon social_icon">
+                                        <ul className="list-unstyled">
+                                            <li><a href="#" className="single_social_icon"><i className="fab fa-facebook-f"></i></a></li>
+                                            <li><a href="#" className="single_social_icon"><i className="fab fa-twitter"></i></a></li>
+                                            <li><a href="#" className="single_social_icon"><i className="fas fa-globe"></i></a></li>
+                                            <li><a href="#" className="single_social_icon"><i className="fab fa-behance"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>
