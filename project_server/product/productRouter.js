@@ -37,6 +37,16 @@ router.get('/products/productlist', (req, res) => {
         });
 });
 
+// paging1 방식
+router.get("/listpage1/:page/:count", async (req, res, next) => {
+    const page = Number(req.params.page) // 페이지번호
+    const count = Number(req.params.count) // 한페이지 당 보여줄 페이지 개수
+    console.log('page', page, 'count', count)
+    productDAO.listpage1(page, count, (resp) => {
+        res.json(resp);
+    });
+})
+
 
 
 // 화면메인 부분 - 준영님
