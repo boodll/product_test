@@ -5,12 +5,12 @@ const axios = require('axios')
 const xpath = require('xpath');
 const dom = require('@xmldom/xmldom').DOMParser;
 
-router.get("/productlist", function (req, res, next) {
-    console.log("상품 페이지");
-    productDAO.productList((resp) => {
-        res.json(resp);
-    });
-});
+// router.get("/productlist", function (req, res, next) {
+//     console.log("상품 페이지");
+//     productDAO.productList((resp) => {
+//         res.json(resp);
+//     });
+// });
 
 router.post("/buy", function (req, res, next) {
     console.log("상품 구매등록");
@@ -21,11 +21,16 @@ router.post("/buy", function (req, res, next) {
     });
 });
 
-// list 페이지에서 상품목록을 구현.. 
-router.get('/products/productlist', (req, res) => {
-    const url = `https://www.nl.go.kr/NL/search/openApi/searchKolisNet.do?key=39b4dd4a523f80ea24ba476b79fc50c968db9622ffd612dc415b4176e41ccadd&apiType=json`;
 
-    axios.get(url)
+// list 페이지에서 상품목록을 구현.. 
+router.get('/productlist', (req, res) => {
+
+    let keyword = '인기도서'
+
+    const url = `https://www.nl.go.kr/NL/search/openApi/searchKolisNet.do?key=39b4dd4a523f80ea24ba476b79fc50c968db9622ffd612dc415b4176e41ccadd&apiType=json&kwd=${keyword}&apiType=json`;
+    const encodeUrl = encodeURI(url)
+
+    axios.get(encodeUrl)
         .then(apiResponse => {
             // 오픈 API로부터 응답을 성공적으로 받으면, 그 데이터를 클라이언트에게 전송
             res.json(apiResponse.data);
@@ -33,7 +38,7 @@ router.get('/products/productlist', (req, res) => {
         .catch(error => {
             // 외부 API 요청 중 에러가 발생하면, 에러 메시지를 로그에 기록하고 클라이언트에게 에러 응답을 전송
             console.error('Error:', error);
-            res.status(500).send('External API request failed');
+            res.status(500).send('외부 API 요청 실패');
         });
 });
 
